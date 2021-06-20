@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TelegramBot
 {
-    // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse); 
+
     public class Requests
     {
         public int used { get; set; }

@@ -10,21 +10,14 @@ namespace TelegramBot
     {
         static void Main(string[] args)
         {
-
-            TelegramBotClient bot = new TelegramBotClient("1832924217:AAGVoUwjl0f_NCMFGsK32lIqH0lkBOe-xrc");
-
-
+            TelegramBotClient bot = new TelegramBotClient("");
 
             bot.OnMessage += (s, arg) =>
             {
-
                 Console.WriteLine(GetHolidays());
-
                 bot.SendTextMessageAsync(arg.Message.Chat.Id, GetHolidays());
             };
-
             bot.StartReceiving();
-
             Console.ReadKey();
         }
         public static string GetHolidays()
