@@ -10,19 +10,26 @@ namespace TelegramBot
     {
         static void Main(string[] args)
         {
-            TelegramBotClient bot = new TelegramBotClient("");
+            TelegramBotClient bot = new TelegramBotClient(File.ReadAllText(@"..\..\..\bot.txt"));
 
             bot.OnMessage += (s, arg) =>
             {
-                Console.WriteLine(GetHolidays());
-                bot.SendTextMessageAsync(arg.Message.Chat.Id, GetHolidays());
+                if (arg.Message.Text == @"/start")
+                {
+                    bot.SendTextMessageAsync(arg.Message.Chat.Id, "Start");
+                }
+                else
+                {
+                    Console.WriteLine(GetHolidays());
+                    bot.SendTextMessageAsync(arg.Message.Chat.Id, GetHolidays());
+                }
             };
             bot.StartReceiving();
             Console.ReadKey();
         }
         public static string GetHolidays()
         {
-            var ApiKey = "";
+            var ApiKey = File.ReadAllText(@"..\..\..\holidays.txt");
             string country = "RU";
             string year = "2020";
 
